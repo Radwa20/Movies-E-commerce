@@ -1,0 +1,217 @@
+﻿@model Producer
+
+@{
+    ViewData["Title"] = "Edit Producer";
+    Layout = "_AdminLayout";
+}
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-danger small" role="alert"> @ViewData["Message"] </div>
+}
+
+<style>
+    body {
+        color: #000;
+        overflow-x: hidden;
+        height: 100%;
+        background: -webkit-linear-gradient(left, #E97DA2, #1F76CC);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .card {
+        padding: 40px 60px;
+        width: 120%;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        border: none !important;
+        box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+        background: #CBE4E7;
+    }
+
+    .blue-text {
+        color: #00BCD4;
+    }
+
+    .form-control-label {
+        margin-bottom: 0;
+    }
+
+    input,
+    textarea,
+    button {
+        padding: 8px 15px;
+        border-radius: 5px !important;
+        margin: 5px 0px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        font-size: 18px !important;
+        font-weight: 300;
+    }
+
+        input:focus,
+        textarea:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: 1px solid #00BCD4;
+            outline-width: 0;
+            font-weight: 400;
+        }
+
+    .btn-block {
+        text-transform: uppercase;
+        font-size: 15px !important;
+        font-weight: 400;
+        height: 43px;
+        cursor: pointer;
+    }
+
+        .btn-block:hover {
+            color: #fff !important;
+        }
+
+    .btn {
+        text-transform: uppercase;
+        font-size: 15px !important;
+        font-weight: 400;
+        height: 43px;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            color: #fff !important;
+        }
+
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0;
+    }
+
+    .btn-custom {
+        background-color: #00BCD4;
+        color: white;
+    }
+
+    .text-danger {
+        color: #ff0000;
+        font-size: 12px;
+    }
+
+    .small {
+        font-size: 12px;
+    }
+
+    .alert {
+        font-size: 12px;
+        margin-top: 15px;
+    }
+</style>
+<div class="container-fluid px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            <h3></h3>
+            <p class="blue-text"><br></p>
+            <div class="card">
+                <h5 class="text-center mb-4">Edit Producer</h5>
+                <form asp-action="Edit" method="post" class="form-card">
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-12 flex-column d-flex">
+                            <label class="form-control-label px-3">Name<span class="text-danger"> *</span></label>
+                            <input type="text" id="Name" name="Name" placeholder="Enter producer name" onblur="validate(1)" pattern="^[a-zA-Z][a-zA-Z ]*$" oninvalid="setCustomValidity('Please enter alphabets.')" onkeyup="setCustomValidity('')" maxlength="30" required>
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-12 flex-column d-flex">
+                            <label class="form-control-label px-3">Bio<span class="text-danger"> *</span></label>
+                            <textarea asp-for="Bio" class="form-control" rows="5" placeholder="Enter producer Bio" pattern="^[^\s].*" maxlength="150" required></textarea>
+                            <span asp-validation-for="Bio" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                            <label class="form-control-label px-3">Profile Picture URL<span class="text-danger"> *</span></label>
+                            <input type="text" id="ProfilePictureURL" name="ProfilePictureURL" placeholder="Enter profile picture URL" onblur="validate(3)" pattern="^[^\s].*" maxlength="150" required>
+                            <span asp-validation-for="ProfilePictureURL" class="text-danger small"></span>
+                        </div>
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                            <img src="@Model.ProfilePictureURL" class="border-info rounded-circle" alt="@Model.Name" style="width: 250px; height: 250px; object-fit: cover;">
+                        </div>
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+                    <div class="row justify-content-end">
+                        <div class="form-group col-sm-6">
+                            <button type="submit" class="btn-block btn-primary">Save Changes</button>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <a asp-action="Producers" class="btn btn-custom">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validate(val) {
+        var v1 = document.getElementById("Name");
+        var v3 = document.getElementById("ProfilePictureURL");
+
+        var flag1 = true;
+        var flag3 = true;
+
+        if (val >= 1 || val == 0) {
+            if (v1.value == "") {
+                v1.style.borderColor = "red";
+                flag1 = false;
+            } else {
+                v1.style.borderColor = "green";
+                flag1 = true;
+            }
+        }
+
+        if (val >= 3 || val == 0) {
+            if (v3.value == "") {
+                v3.style.borderColor = "red";
+                flag3 = false;
+            } else {
+                v3.style.borderColor = "green";
+                flag3 = true;
+            }
+        }
+
+        return flag1 && flag3;
+    }
+
+    // Restrict input length in JavaScript
+    document.addEventListener('DOMContentLoaded', function () {
+        var nameInput = document.getElementById('Name');
+        var bioInput = document.querySelector('textarea[asp-for="Bio"]');
+        var urlInput = document.getElementById('ProfilePictureURL');
+
+        nameInput.addEventListener('input', function () {
+            if (nameInput.value.length > 30) {
+                nameInput.value = nameInput.value.substring(0, 30);
+            }
+        });
+
+        bioInput.addEventListener('input', function () {
+            if (bioInput.value.length > 150) {
+                bioInput.value = bioInput.value.substring(0, 150);
+            }
+        });
+
+        urlInput.addEventListener('input', function () {
+            if (urlInput.value.length > 150) {
+                urlInput.value = urlInput.value.substring(0, 150);
+            }
+        });
+    });
+</script>
