@@ -19,6 +19,16 @@
         background-repeat: no-repeat;
         background-size: 100% 100%;
     }
+    .textareaElement
+
+   {
+       width: 300px;
+       min-height: 17px;
+       border: 1px solid #ccc;
+       max-height: 150px;
+       overflow-x: hidden;
+       overflow-y: auto;
+   }
 
     .card {
         padding: 40px 60px;
@@ -131,13 +141,17 @@
                             <span asp-validation-for="Name" class="text-danger small"></span>
                         </div>
                     </div>
-                    <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-12 flex-column d-flex">
+                   <div class="row justify-content-between text-left">
+                         @* <div class="form-group col-sm-12 flex-column d-flex"> 
+                              <label class="form-control-label px-3">Bio<span class="text-danger"> </span></label> 
+                              <input type="text" id="Bio" name="Bio" class="textareaElement" placeholder="Enter actor Bio" pattern="^[^\s]." oninvalid="setCustomValidity('Please enter actor Bio.')" onkeyup="setCustomValidity('')" required></input> 
+                          </div>*@
+                                <div class="form-group col-sm-12 flex-column d-flex">
                             <label class="form-control-label px-3">Bio<span class="text-danger"> *</span></label>
                             <textarea asp-for="Bio" class="form-control" rows="5" placeholder="Enter actor Bio" pattern="^[^\s].*" maxlength="150" required></textarea>
                             <span asp-validation-for="Bio" class="text-danger small"></span>
                         </div>
-                    </div>
+                      </div>
 
                     <div class="row justify-content-between text-left">
                         <div class="form-group col-sm-6 flex-column d-flex">

@@ -55,10 +55,13 @@
 								<input type="text" name="ProducerName" placeholder="Enter Producer Name" pattern="^[a-zA-Z][a-zA-Z ]*$" oninvalid="setCustomValidity('Please enter alphabets.')" onkeyup="setCustomValidity('')" required />
 							</div>
 							<div class="form-input">
-								<input type="text" name="ProducerBio" pattern="^[^\s].*" placeholder="Enter Producer Bio" required />
-							</div>
+				<input type="text" name="ProducerBio" pattern="^[^\s].*" placeholder="Enter Producer Bio" oninvalid="setCustomValidity('Please enter producer Bio.')" onkeyup="setCustomValidity('')" required />
+					</div>
 							<div class="form-input">
-								<input type="text" name="ProfilePictureURL" pattern="^[^\s].*"  placeholder="Enter Profile Picture URL" required />
+								<input type="text" name="ProfilePictureURL" pattern="^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$" placeholder="Enter a valid URL" required 
+        oninvalid="setCustomValidity('Please enter a valid URL.')" 
+        oninput="setCustomValidity('')" />
+		<div class="invalid-feedback">Please enter a valid URL.</div>
 							</div>
 							 <div class="row">
         <div class="col-6">

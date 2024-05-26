@@ -55,8 +55,8 @@
 								<input type="text" name="ActorName" placeholder="Enter Actor Name" pattern="^[a-zA-Z][a-zA-Z ]*$" oninvalid="setCustomValidity('Please enter alphabets.')" onkeyup="setCustomValidity('')"  required="" />
 							</div>
 							<div class="form-input">
-								<input type="text" name="ActorBio" placeholder="Enter Actor Bio" pattern="^[^\s].*" required="" />
-							</div>
+					<input type="text" name="ActorBio" placeholder="Enter Actor Bio" pattern="^[^\s].*" oninvalid="setCustomValidity('Please enter actor Bio.')" onkeyup="setCustomValidity('')"  required="" />
+				</div>
 							<div class="form-input">
 								<input type="text" name="ProfilePictureURL" placeholder="Enter Profile Picture URL" pattern="^[^\s].*" required />
 							</div>

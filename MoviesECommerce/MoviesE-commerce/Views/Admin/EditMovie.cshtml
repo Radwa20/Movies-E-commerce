@@ -72,10 +72,22 @@
         border: none;
         cursor: pointer;
     }
+     .without_ampm::-webkit-datetime-edit-ampm-field {
+            display: none;
+         }
+         input[type=time]::-webkit-clear-button {
+           -webkit-appearance: none;
+           -moz-appearance: none;
+           -o-appearance: none;
+           -ms-appearance:none;
+           appearance: none;
+           margin: -10px; 
+         }
 
     .btn-custom {
         background-color: #E64077; /* Custom color */
         color: white; /* Text color */
+
     }
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -98,12 +110,14 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Duration"></label>
-                        <input type="time" asp-for="Duration" class="form-control" required />
+                        <input type="time" asp-for="Duration" class="without_ampm form-control" step="1" max="05:00" required />
                 </div>
-                <div class="form-group">
-                    <label asp-for="Price"></label>
-                        <input asp-for="Price" class="form-control" type="number" min="0" required />
-                </div>
+               
+
+               <div class="form-group">
+        <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" type="number" min="0" max="5000" required />
+    </div>
               
                
                
@@ -137,10 +151,21 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <div class="form-group">
+                   @* <div class="form-group">
                         <label asp-for="ImageURL"></label>
                             <input asp-for="ImageURL" class="form-control" pattern="^[^\s].*" placeholder="enter avalid URL" required />
-                    </div>
+                    </div>*@
+               <div class="form-group">
+    <label asp-for="ImageURL"></label>
+    <input asp-for="ImageURL" class="form-control" pattern="^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$" placeholder="Enter a valid URL" required 
+        oninvalid="setCustomValidity('Please enter a valid URL.')" 
+        oninput="setCustomValidity('')" />
+    <!-- Display a custom error message if the URL is not valid -->
+    <div class="invalid-feedback">Please enter a valid URL.</div>
+</div>
+
+
+
                     <div class="form-group">
                         <label asp-for="Date"></label>
                             <input type="date" asp-for="Date" class="form-control" required />
@@ -156,10 +181,23 @@
                         </select>
                     </div>
                   @*   <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea> *@
-                    <div class="form-group">
+                   @* <div class="form-group">
                         <label asp-for="Description"></label>
                             <textarea asp-for="Description" class="form-control" rows="5" required></textarea>
-                    </div>
+                    </div>*@
+                    <div class="form-group">
+    <label asp-for="Description"></label>
+    <input id="descriptionInput" asp-for="Description" class="form-control" rows="5"pattern="^[^\s].*" 
+    placeholder="Enter Description" oninvalid="setCustomValidity('Please enter Description.')" 
+    onkeyup="setCustomValidity('')" required ></textarea>
+</div>
+        @*<div class="form-input">
+				        <input type="text" name="Description" class="form-control"
+                        pattern="^[^\s].*" placeholder="Enter Description" 
+                        oninvalid="setCustomValidity('Please enter Description.')" onkeyup="setCustomValidity('')" required />
+					        </div>*@
+@*<div id="descriptionErrorMessage" style="display: none; color: red;">Please enter a non-empty description.</div>
+*@
                 </div>
                 
             </div>
