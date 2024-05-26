@@ -17,8 +17,15 @@ namespace MoviesE_commerce.Controllers
             _db = db;
         }
 
-       
 
+        public IActionResult MoviesType(MovieCategory category)
+        {
+
+            var movies = _db.Movies.Where(m => m.MovieCategory == category).ToList();
+            ViewData["Category"] = category;
+
+            return View(movies);
+        }
         public IActionResult Index()
         {
 
@@ -40,9 +47,9 @@ namespace MoviesE_commerce.Controllers
         public IActionResult Movies()
         {
             //int userId = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
-            
+
             //ViewBag.UserId = userId;
-            var movies = _db.Movies.ToList(); 
+            var movies = _db.Movies.ToList();
             return View(movies);
         }
         public IActionResult OneMovies(int id)
@@ -75,10 +82,10 @@ namespace MoviesE_commerce.Controllers
 
         public IActionResult Actor(int id)
         {
- 
+
             var actor = _db.Actors
-                .Include(am => am.ActorMovies) 
-                    .ThenInclude(am => am.Movie) 
+                .Include(am => am.ActorMovies)
+                    .ThenInclude(am => am.Movie)
                 .FirstOrDefault(a => a.Id == id);
 
             if (actor == null)
@@ -88,16 +95,10 @@ namespace MoviesE_commerce.Controllers
 
             return View(actor);
         }
-		[HttpGet]
-		public IActionResult MoviesType(MovieCategory category)
-		{
-
-			var movies = _db.Movies.Where(m => m.MovieCategory == category).ToList();
-			ViewData["Category"] = category;
-
-			return View(movies);
-		}
+    }
+    
 
 
-	}
+    
+
 }

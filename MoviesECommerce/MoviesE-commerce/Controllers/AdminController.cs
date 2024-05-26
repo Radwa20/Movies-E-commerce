@@ -971,19 +971,13 @@ namespace MoviesE_commerce.Controllers
 
 			var movies = _db.Movies.Where(m => m.MovieCategory == category).ToList();
 			ViewData["Category"] = category;
+			int adminId = Convert.ToInt32(HttpContext.Session.GetString("AdminId"));
+			var admin = _db.Users.FirstOrDefault(u => u.Id == adminId);
+			ViewBag.Id = adminId;
 
 			return View(movies);
 		}
-		[HttpGet]
-		public IActionResult Search()
-		{
-			if (!isAllowed())
-			{
-				return RedirectToAction("NotAllowed", "Admin");
-			}
-			return View();
-		}
-
+		
 		[HttpPost]
 		public IActionResult Search(string searchTerm)
 		{
@@ -1016,6 +1010,7 @@ namespace MoviesE_commerce.Controllers
 		}
 
 	}
+
 
 
     ////////

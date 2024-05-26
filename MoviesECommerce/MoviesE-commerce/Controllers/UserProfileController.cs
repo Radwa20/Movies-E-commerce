@@ -361,21 +361,20 @@ namespace MoviesE_commerce.Controllers
             var movies = _db.Movies.Where(m => m.MovieCategory == category).ToList();
 			ViewData["Category"] = category;
 
+			int userId = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+
+			ViewBag.UserId = userId;
+
+			var user = _db.Users.FirstOrDefault(u => u.Id == userId);
+			
+
 			return View(movies);
         }
 		public IActionResult NotFoundMovie()
 		{
 			return View();
 		}
-		[HttpGet]
-		public IActionResult Search()
-		{
-			if (!isAllowed())
-			{
-				return RedirectToAction("NotAllowed", "Admin");
-			}
-			return View();
-		}
+		
 
 		[HttpPost]
 		public IActionResult Search(string searchTerm)
