@@ -419,7 +419,7 @@ namespace MoviesE_commerce.Controllers
 
 		public IActionResult Producers()
 		{
-			if (isAllowed())
+			if (!isAllowed())
 			{
 				return RedirectToAction("NotAllowed", "Admin");
 			}
