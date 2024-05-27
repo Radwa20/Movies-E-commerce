@@ -52,13 +52,15 @@
 					<form action="#" method="post" class="formhny-sec">
 						<div class="form-grids">
 							<div class="form-input">
-								<input type="text" name="ActorName" placeholder="Enter Actor Name" pattern="^[a-zA-Z][a-zA-Z ]*$" oninvalid="setCustomValidity('Please enter alphabets.')" onkeyup="setCustomValidity('')"  required="" />
+								<input type="text" name="ActorName" placeholder="Enter Actor Name" pattern="^[a-zA-Z][a-zA-Z ]*$" oninvalid="setCustomValidity('Please enter alphabets.')" maxlength="35" onkeyup="setCustomValidity('')"  required="" />
 							</div>
 							<div class="form-input">
-					<input type="text" name="ActorBio" placeholder="Enter Actor Bio" pattern="^[^\s].*" oninvalid="setCustomValidity('Please enter actor Bio.')" onkeyup="setCustomValidity('')"  required="" />
+								<input type="text" name="ActorBio" placeholder="Enter Actor Bio" pattern="^[^\s].*" oninvalid="setCustomValidity('Please enter actor Bio.')" maxlength="150" onkeyup="setCustomValidity('')" required=""   />
 				</div>
 							<div class="form-input">
-								<input type="text" name="ProfilePictureURL" placeholder="Enter Profile Picture URL" pattern="^[^\s].*" required />
+								<input type="text" name="ProfilePictureURL" placeholder="Enter Profile Picture URL" pattern="^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$" placeholder="Enter a valid URL" required
+									   oninvalid="setCustomValidity('Please enter a valid URL.')"
+									   oninput="setCustomValidity('')" required />
 							</div>
 							 <div class="row">
         <div class="col-6">

@@ -130,7 +130,7 @@
     <form class="contact-form row" method="post">
         <div class="form-field col-lg-6">
             <label asp-for="Title"></label>
-            <input asp-for="Title" class="form-control" pattern="^[a-zA-Z][a-zA-Z ]*$" oninvalid="setCustomValidity('Please enter alphabets.')" oninput="setCustomValidity('')" placeholder="Please enter letters and spaces (except at the beginning)" required />
+            <input asp-for="Title" class="form-control" pattern="^[a-zA-Z1-9'][a-zA-Z1-9' ]*$" maxlength="35" oninvalid="setCustomValidity('Please enter alphabets.')" oninput="setCustomValidity('')" placeholder="Please enter letters and spaces (except at the beginning)" required />
         </div>
         <div class="form-field col-lg-6">
             <label asp-for="Price"></label>
@@ -147,23 +147,22 @@
                 <div class="form-group">
 </div>
         </div>
-       @* <div class="form-field col-lg-12">
-            <label asp-for="Duration"></label>
-            <input type="time" asp-for="Duration" class="form-control" required />
-        </div>*@
-        @* <div class="form-field col-lg-12">
-            <label asp-for="Duration"></label>
-            <input type="time" asp-for="Duration"  class="without_ampm"   step="1" required />
-        </div>*@
+    
         <div class="form-field col-lg-12">
     <label asp-for="Duration"></label>
-    <input type="time" asp-for="Duration" class="without_ampm form-control" step="1" max="05:00" required />
+    <input type="time" asp-for="Duration" class="without_ampm form-control" step="1" max="10:00" required />
 </div>
 
         <div class="form-field col-lg-12">
             <label asp-for="Date"></label>
-            <input type="date" asp-for="Date" class="form-control" required />
+            <input type="date" asp-for="Date" class="form-control"
+                   max="" required />
         </div>
+        <script>
+            var today = new Date().toISOString().split("T")[0];
+            document.getElementById("Date").setAttribute("max", today);
+        </script>
+
         <div class="form-field col-lg-12">
             <label asp-for="MovieCategory"></label>
             <select asp-for="MovieCategory" class="form-control" required>
@@ -198,14 +197,11 @@
             <br />
              <label asp-for="Description"></label>
     <input id="descriptionInput" asp-for="Description" class="form-control" rows="5"pattern="^[^\s].*" 
-    placeholder="Enter Description" oninvalid="setCustomValidity('Please enter Description.')" 
-    onkeyup="setCustomValidity('')" required ></textarea>
+    placeholder="Enter Description" oninvalid="setCustomValidity('Please enter Description.')"
+                   onkeyup="setCustomValidity('')" maxlength="200" required ></textarea>
 
         </div>
-       @* <div class="form-field col-lg-12">
-            <label asp-for="Description"></label>
-            <textarea asp-for="Description" class="form-control" rows="5" placeholder="Enter text (no space at the beginning)" pattern="^[^\s].*" required></textarea>
-        </div>*@
+      
    
         <div class="form-field col-lg-6">
             <button type="submit" class="btn btn-primary">Add Movie</button>

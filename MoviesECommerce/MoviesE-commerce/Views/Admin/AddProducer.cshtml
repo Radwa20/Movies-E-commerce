@@ -52,10 +52,10 @@
 					<form action="#" method="post" class="formhny-sec">
 						<div class="form-grids">
 							<div class="form-input">
-								<input type="text" name="ProducerName" placeholder="Enter Producer Name" pattern="^[a-zA-Z][a-zA-Z ]*$" oninvalid="setCustomValidity('Please enter alphabets.')" onkeyup="setCustomValidity('')" required />
+								<input type="text" name="ProducerName" placeholder="Enter Producer Name" maxlength="35" pattern="^[a-zA-Z][a-zA-Z ]*$" oninvalid="setCustomValidity('Please enter alphabets.')" onkeyup="setCustomValidity('')" required />
 							</div>
 							<div class="form-input">
-				<input type="text" name="ProducerBio" pattern="^[^\s].*" placeholder="Enter Producer Bio" oninvalid="setCustomValidity('Please enter producer Bio.')" onkeyup="setCustomValidity('')" required />
+								<input type="text" name="ProducerBio" pattern="^[^\s].*" placeholder="Enter Producer Bio" oninvalid="setCustomValidity('Please enter producer Bio.')" maxlength="150" onkeyup="setCustomValidity('')" required  />
 					</div>
 							<div class="form-input">
 								<input type="text" name="ProfilePictureURL" pattern="^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$" placeholder="Enter a valid URL" required 
