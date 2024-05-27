@@ -3,11 +3,13 @@
 *@
 
 @{
-	ViewData["Title"] = "Add Actor";
+	ViewData["Title"] = "AddActor";
 	Layout = "_AdminLayout";
 	// Layout = null;
 
 }
+<title>@ViewData["Title"]</title>
+
 <style>
 	.custom-select {
 		display: block;
@@ -30,6 +32,8 @@
 		}
 
 </style>
+<br />
+<br />
 @if (TempData["Message"] != null)
 {
 	<div class="alert alert-danger" role="alert">
@@ -44,8 +48,7 @@
 		<div class="container py-lg-4">
 			<div class="headerhny-title text-center">
 				<h4 class="sub-title text-center">Add a new Actor to Our Website</h4>
-				@* <h3 class="hny-title mb-0">Leave a Message</h3> *@
-				@* <p class="hny-title mb-lg-5 mb-4">.</p> *@
+			
 			</div>
 			<div class="contact-view mt-lg-5 mt-4">
 				<div class="conhny-form-section">

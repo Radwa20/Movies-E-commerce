@@ -4,7 +4,21 @@
     Layout = "_AdminLayout";
    // Layout = null;
 }
+<title>@ViewData["Title"]</title>
+<br />
+<br />
+<br />
+<div class="center-container">
+ 
 
+    <div class="headerhny-title text-center">
+        <h1 class="sub-title text-center">Producers</h1>
+
+    </div>
+    <br />
+    
+  
+</div>
 
 <div class="container">
   <div class="row">
@@ -34,6 +48,7 @@
                     <button type="submit" class="btn btn-outline-primary">Edit</button>
                 </form>
             </div>
+            <br/>
             <div class="btn-group d-inline-block">
                     <form action="@Url.Action("DeleteProducer", "Admin", new { id = item.Id })" method="post" onsubmit="return confirmDelete()">
                         <input type="hidden" name="id" value="@item.Id" />
