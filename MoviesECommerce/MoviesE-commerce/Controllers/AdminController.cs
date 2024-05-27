@@ -247,23 +247,23 @@ namespace MoviesE_commerce.Controllers
             string ProducerProfilePictureURL = req["ProfilePictureURL"];
 
             // Validate the length of the ActorName, ActorBio, and ProfilePictureURL
-            if (producerName.Length > 30)
-            {
-                ViewData["Message"] = "Producer Name must be 30 characters or less.";
-                return View();
-            }
+            //if (producerName.Length > 30)
+            //{
+            //    ViewData["Message"] = "Producer Name must be 30 characters or less.";
+            //    return View();
+            //}
 
-            if (ProducerBio.Length > 150)
-            {
-                ViewData["Message"] = "Producer Bio must be 150 characters or less.";
-                return View();
-            }
+            //if (ProducerBio.Length > 150)
+            //{
+            //    ViewData["Message"] = "Producer Bio must be 150 characters or less.";
+            //    return View();
+            //}
 
-            if (ProducerProfilePictureURL.Length > 150)
-            {
-                ViewData["Message"] = "Profile Picture URL must be 150 characters or less.";
-                return View();
-            }
+            //if (ProducerProfilePictureURL.Length > 150)
+            //{
+            //    ViewData["Message"] = "Profile Picture URL must be 150 characters or less.";
+            //    return View();
+            //}
 
             // Check if ActorName contains only valid characters (letters and spaces)
             if (!IsValidActorName(producerName))
@@ -625,37 +625,37 @@ namespace MoviesE_commerce.Controllers
             }
 
             // Validate fields
-            if (string.IsNullOrEmpty(producer.Name) || string.IsNullOrEmpty(producer.Bio) || string.IsNullOrEmpty(producer.ProfilePictureURL))
-            {
-                ViewData["Message"] = "All fields are required.";
-                return View(producer);
-            }
+            //if (string.IsNullOrEmpty(producer.Name) || string.IsNullOrEmpty(producer.Bio) || string.IsNullOrEmpty(producer.ProfilePictureURL))
+            //{
+            //    ViewData["Message"] = "All fields are required.";
+            //    return View(producer);
+            //}
 
-            if (producer.Name.Length > 30)
-            {
-                ViewData["Message"] = "Producer Name must be 30 characters or less.";
-                return View(producer);
-            }
+            //if (producer.Name.Length > 30)
+            //{
+            //    ViewData["Message"] = "Producer Name must be 30 characters or less.";
+            //    return View(producer);
+            //}
 
-            if (producer.Bio.Length > 150)
-            {
-                ViewData["Message"] = "Producer Bio must be 150 characters or less.";
-                return View(producer);
-            }
+            //if (producer.Bio.Length > 150)
+            //{
+            //    ViewData["Message"] = "Producer Bio must be 150 characters or less.";
+            //    return View(producer);
+            //}
 
-            if (producer.ProfilePictureURL.Length > 150)
-            {
-                ViewData["Message"] = "Profile Picture URL must be 150 characters or less.";
-                return View(producer);
-            }
+            //if (producer.ProfilePictureURL.Length > 150)
+            //{
+            //    ViewData["Message"] = "Profile Picture URL must be 150 characters or less.";
+            //    return View(producer);
+            //}
 
-            if (!IsValidActorName(producer.Name))
-            {
-                ViewData["Message"] = "Producer Name must contain only letters and spaces.";
-                return View(producer);
-            }
+            //if (!IsValidActorName(producer.Name))
+            //{
+            //    ViewData["Message"] = "Producer Name must contain only letters and spaces.";
+            //    return View(producer);
+            //}
 
-            // Check if the producer already exists (excluding the current producer being edited)
+            //// Check if the producer already exists (excluding the current producer being edited)
             var existingProducer = _db.Producers.SingleOrDefault(p => p.Name == producer.Name && p.Id != producer.Id);
             if (existingProducer != null)
             {

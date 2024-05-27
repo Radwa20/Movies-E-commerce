@@ -159,64 +159,122 @@ namespace MoviesE_commerce.Controllers
 
 
 		}
+		//[HttpPost]
+		//public IActionResult Edit(IFormCollection req)
+		//{
+
+		//          int id = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+		//          var edituser = _db.Users.SingleOrDefault(user => user.Id == id);
+
+		//          newFirstName = req["FirstName"];
+		//	newLastName = req["LastName"];
+		//	oldPassword = req["oldPassword"];
+		//          newPassword = req["newPassword"];
+
+		//          bool error = true;
+
+
+
+		//	if (!valid.isValidName(newFirstName))
+		//	{
+		//		ViewData["Message"] += "Inavlid First Name\n";
+		//		error = false;
+
+		//	}
+		//	if (!valid.isValidName(newLastName))
+		//	{
+		//		ViewData["Message"] += "Inavlid Last Name\n";
+		//              error = false;
+
+		//	}
+		//	if (!valid.isValidPassword(newPassword))
+		//	{
+		//		TempData["Message"] += "Inavlid Password : it should contains at least four capital letters and is at least 8 characters long, no spaces\n";
+		//		error = false;
+		//		return View();
+		//	}
+		//	if (edituser == null || !BCrypt.Net.BCrypt.Verify(oldPassword, edituser.Password))
+		//	{
+		//		TempData["Message"] += "Old Password is not correct\n";
+		//		error = false;
+
+		//	}
+
+		//          if (error)
+		//	{
+
+		//		if (edituser == null)
+		//		{
+		//			ViewData["Message"] += $"Null Value, {id}\n";
+		//			return View();
+		//		}
+		//		edituser.FirstName = newFirstName;
+		//		edituser.LastName = newLastName;
+		//		edituser.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+		//		_db.SaveChanges();
+		//		ViewData["Message"] = "Changes Saved";
+		//		return RedirectToAction("ViewProfile", "UserProfile");
+		//	}
+		//	return View();
+
+		//}
 		[HttpPost]
 		public IActionResult Edit(IFormCollection req)
 		{
-            
-            int id = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
-            var edituser = _db.Users.SingleOrDefault(user => user.Id == id);
+			int id = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+			var edituser = _db.Users.SingleOrDefault(user => user.Id == id);
 
-            newFirstName = req["FirstName"];
+			newFirstName = req["FirstName"];
 			newLastName = req["LastName"];
 			oldPassword = req["oldPassword"];
-            newPassword = req["newPassword"];
-           
-            bool error = true;
+			newPassword = req["newPassword"];
 
-
+			bool error = true;
+			string message = "";
 
 			if (!valid.isValidName(newFirstName))
 			{
-				ViewData["Message"] += "Inavlid First Name\n";
+				if (message != "") message += ", ";
+				message += "Invalid First Name";
 				error = false;
-
 			}
 			if (!valid.isValidName(newLastName))
 			{
-				ViewData["Message"] += "Inavlid Last Name\n";
-                error = false;
-
+				if (message != "") message += ", ";
+				message += "Invalid Last Name";
+				error = false;
 			}
 			if (!valid.isValidPassword(newPassword))
 			{
-				TempData["Message"] += "Inavlid Password : it should contains at least four capital letters and is at least 8 characters long, no spaces\n";
+				if (message != "") message += ", ";
+				message += "Invalid Password: it should contain at least four capital letters and be at least 8 characters long, no spaces";
 				error = false;
-				return View();
 			}
 			if (edituser == null || !BCrypt.Net.BCrypt.Verify(oldPassword, edituser.Password))
 			{
-				TempData["Message"] += "Old Password is not correct\n";
+				if (message != "") message += ", ";
+				message += "Old Password is not correct";
 				error = false;
-			
 			}
 
-            if (error)
+			if (error)
 			{
-
 				if (edituser == null)
 				{
-					ViewData["Message"] += $"Null Value, {id}\n";
+					if (message != "") message += ", ";
+					message += $"Null Value, {id}";
+					TempData["Message"] = message;
 					return View();
 				}
 				edituser.FirstName = newFirstName;
 				edituser.LastName = newLastName;
 				edituser.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
 				_db.SaveChanges();
-				ViewData["Message"] = "Changes Saved";
+				TempData["Message"] = "Changes Saved";
 				return RedirectToAction("ViewProfile", "UserProfile");
 			}
+			TempData["Message"] = message;
 			return View();
-			
 		}
 		[HttpGet]
 		public IActionResult DeleteUser(int? id)
