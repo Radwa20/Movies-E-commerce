@@ -1,6 +1,7 @@
 ﻿@model  MoviesE_commerce.Models.ViewModels.BillViewModel
+@{
     ViewData["Title"] = "Bill";
-    Layout =NULL;
+    Layout = "_UserLayout";
 }
 <br />
 <br />
@@ -119,11 +120,11 @@ tbody, td, tfoot, th, thead, tr {
               <div class="row">
                 <div class="col-md-6">
                   <div class="text-muted mb-2">Payment No.</div>
-                  <strong>#88305</strong>
+                  <strong>#@Model.Bills.First().Payment.Id</strong>
                 </div>
                 <div class="col-md-6 text-md-end">
                   <div class="text-muted mb-2">Payment Date</div>
-                  <strong>Feb/09/20</strong>
+                  <strong>@Model.Bills.First().Payment.PaymentDate</strong>
                 </div>
               </div>
             </div>
@@ -133,24 +134,24 @@ tbody, td, tfoot, th, thead, tr {
                 <div class="col-md-6">
                   <div class="text-muted mb-2">Client</div>
                   <strong>
-                    John McClane
+                    @Model.UserFirstName
                   </strong>
-                  <p class="fs-sm">
+                 @* <p class="fs-sm">
                     989 5th Avenue, New York, 55832
-                    <br>
-                    <a href="#!" class="text-purple">john@email.com
+                    *@<br>
+                    <a href="#!" class="text-purple">@Model.Bills.First().Payment.User.Email
                     </a>
                   </p>
                 </div>
                 <div class="col-md-6 text-md-end">
                   <div class="text-muted mb-2">Payment To</div>
                   <strong>
-                    Themes LLC
+                    Popcorn Playouse
                   </strong>
-                  <p class="fs-sm">
-                    9th Avenue, San Francisco 99383
+                 @* <p class="fs-sm">
+                    9th Avenue, San Francisco 99383*@
                     <br>
-                    <a href="#!" class="text-purple">themes@email.com
+                    <a href="#!" class="text-purple">Popcorn527@email.com
                     </a>
                   </p>
                 </div>
@@ -160,19 +161,35 @@ tbody, td, tfoot, th, thead, tr {
             <table class="table border-bottom border-gray-200 mt-3">
               <thead>
                 <tr>
-                  <th scope="col" class="fs-sm text-dark text-uppercase-bold-sm px-0">Description</th>
+                  <th scope="col" class="fs-sm text-dark text-uppercase-bold-sm px-0">MOVIES</th>
                   <th scope="col" class="fs-sm text-dark text-uppercase-bold-sm text-end px-0">Amount</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+               @* <tr>
                   <td class="px-0">Theme customization</td>
                   <td class="text-end px-0">$60.00</td>
                 </tr>
                 <tr>
                   <td class="px-0">Website design</td>
                   <td class="text-end px-0">$80.00</td>
-                </tr>
+                </tr>*@
+                  @if (Model.Bills.First().Payment.Order.OrderItems != null && Model.Bills.First().Payment.Order.OrderItems.Any())
+                            {
+                                foreach (var item in Model.Bills.First().Payment.Order.OrderItems)
+                                {
+                                    <tr>
+                                        <td class="px-0">@item.Movie.Title</td>
+                                        <td class="text-end px-0">@item.Movie.Price.ToString("C")</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="2" class="px-0 text-center">No items found</td>
+                                </tr>
+                            }
               </tbody>
             </table>
 
@@ -187,7 +204,7 @@ tbody, td, tfoot, th, thead, tr {
               </div>*@
               <div class="d-flex justify-content-end mt-3">
                 <h5 class="me-3">Total:</h5>
-                <h5 class="text-success">$399.99 USD</h5>
+                <h5 class="text-success">$@Model.Total EG</h5>
               </div>
             </div>
           </div>
@@ -201,3 +218,8 @@ tbody, td, tfoot, th, thead, tr {
       </div>
     </div>
   </div>
+   <a href="#" class="back-button" onclick="history.back()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+        </svg>
+    </a>

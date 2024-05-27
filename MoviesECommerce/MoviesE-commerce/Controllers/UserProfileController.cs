@@ -424,9 +424,11 @@ namespace MoviesE_commerce.Controllers
 			ViewBag.UserId = userId;
 
 			var user = _db.Users.FirstOrDefault(u => u.Id == userId);
-			
+            
+            ViewBag.UserName = user.FirstName;
+            ViewBag.ImageURL = user.ImageURL;
 
-			return View(movies);
+            return View(movies);
         }
 		public IActionResult NotFoundMovie()
 		{

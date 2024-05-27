@@ -233,9 +233,15 @@ namespace MoviesE_commerce.Controllers
         //**************************
         public IActionResult AddProducer(IFormCollection req)
         {
+            int adminId = 0;
+            adminId = Convert.ToInt32(HttpContext.Session.GetString("AdminId"));
+            var admin = _db.Users.FirstOrDefault(u => u.Id == adminId);
+            ViewBag.Id = adminId;
+            ViewBag.UserName = admin.FirstName;
+            ViewBag.ImageURL = admin.ImageURL;
 
-			// Check if any field is empty
-			if (string.IsNullOrEmpty(req["ProducerName"]) || string.IsNullOrEmpty(req["ProducerBio"]) || string.IsNullOrEmpty(req["ProfilePictureURL"]))
+            // Check if any field is empty
+            if (string.IsNullOrEmpty(req["ProducerName"]) || string.IsNullOrEmpty(req["ProducerBio"]) || string.IsNullOrEmpty(req["ProfilePictureURL"]))
             {
                 ViewData["Message"] = "All fields are required.";
                 return View();
@@ -315,6 +321,12 @@ namespace MoviesE_commerce.Controllers
 		[HttpPost]
         public IActionResult AddActor(IFormCollection req)
         {
+            int adminId = 0;
+            adminId = Convert.ToInt32(HttpContext.Session.GetString("AdminId"));
+            var admin = _db.Users.FirstOrDefault(u => u.Id == adminId);
+            ViewBag.Id = adminId;
+            ViewBag.UserName = admin.FirstName;
+            ViewBag.ImageURL = admin.ImageURL;
             // Check if any field is empty
             if (string.IsNullOrEmpty(req["ActorName"]) || string.IsNullOrEmpty(req["ActorBio"]) || string.IsNullOrEmpty(req["ProfilePictureURL"]))
             {
@@ -974,8 +986,11 @@ namespace MoviesE_commerce.Controllers
 			int adminId = Convert.ToInt32(HttpContext.Session.GetString("AdminId"));
 			var admin = _db.Users.FirstOrDefault(u => u.Id == adminId);
 			ViewBag.Id = adminId;
+            
+            ViewBag.UserName = admin.FirstName;
+            ViewBag.ImageURL = admin.ImageURL;
 
-			return View(movies);
+            return View(movies);
 		}
 		
 		[HttpPost]
