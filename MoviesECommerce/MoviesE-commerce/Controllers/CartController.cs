@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MoviesE_commerce.DBContect;
 using MoviesE_commerce.Models;
+using MoviesE_commerce.Models.ViewModels;
 
 namespace MoviesE_commerce.Controllers
 {
@@ -377,5 +378,50 @@ namespace MoviesE_commerce.Controllers
 
 			return false;
 		}
-	}
+        public IActionResult BillDetails()
+        {
+            if (!isAllowed())
+            {
+                return RedirectToAction("NotAllowed", "Admin");
+            }
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+
+            var user = _db.Users.FirstOrDefault(u => u.Id == userId);
+            ViewBag.Id = userId;
+            ViewBag.UserName = user.FirstName;
+            ViewBag.ImageURL = user.ImageURL;
+
+            var billsWithPaymentsAndMovies = _db.Bills
+                .Include(b => b.Payment)
+                    .ThenInclude(p => p.Order)
+                        .ThenInclude(o => o.OrderItems)
+                        .ThenInclude(y => y.Movie)
+                .Where(b => b.Payment.UserId == userId)
+                .ToList();
+
+            var userFirstName = _db.Users
+                           .Where(u => u.Id == userId) // Adjust the filtering criteria as needed
+                           .Select(u => u.FirstName)
+                           .FirstOrDefault();
+
+
+            // Example calculations, replace with your actual logic
+            int subtotal = billsWithPaymentsAndMovies.Sum(b => b.Payment.Order.OrderItems.Sum(oi => oi.Movie.Price));
+            int discount = 0; // Example value, replace with actual discount calculation
+            int total = subtotal - discount;
+
+            var viewModel = new BillViewModel
+            {
+                Bills = billsWithPaymentsAndMovies,
+                UserFirstName = userFirstName,
+                Subtotal = subtotal,
+                Discount = discount,
+                Total = total
+            };
+
+            return View(viewModel);
+        }
+
+
+    }
 }
