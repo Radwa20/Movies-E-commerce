@@ -44,10 +44,7 @@
 						Popcorn Playhouse
 					</a>
 				</h1>
-					<!-- if logo is image enable this
-							<a class="navbar-brand" href="#index.html">
-								<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-								</a> -->
+			
 					<button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
 							data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
 							aria-label="Toggle navigation">
@@ -97,34 +94,20 @@
 				</div>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                      @* <li class="nav-item active">
-							
-							 <a class="nav-link" asp-controller="UserProfile" asp-action="UserDashboard" >Home</a> 
-						</li>*@
+             
 
 						<li class="nav-item active">
 							<a class="nav-link" asp-controller="UserProfile" asp-action="Movies">Movies</a>
 						</li>
-@* 
-                           <li class="nav-item active">
-                            <a class="nav-link" asp-controller="UserProfile" asp-action="ViewProfile">Profile</a>
-                        </li> *@
-                       @* <li class="nav-item active">
-							<a class="nav-link" asp-controller="Cart" asp-action="Orders">Orders</a>
-						</li>*@
+
 						<a href="@Url.Action("Orders", "Cart")" class="cart-icon">
 							<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
 								<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
 							</svg>
-							@*<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-							  <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-							  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-							</svg>*@
+
 						</a>
 						<a href="@Url.Action("MyCart", "Cart")" class="cart-icon">
-							@*<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-								<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-							</svg>*@
+
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
 							  <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
 							  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
@@ -139,9 +122,7 @@
 						</li>
 
 						<ul class="navbar-nav">
-							@*<li style="margin-right: 1px;">
-								<img src="@ViewBag.ImageURL" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;">
-							</li>*@
+
 							<li class="nav-item">
 								<a class="nav-link" href="/UserProfile/ViewProfile">@ViewBag.UserName</a>
 							</li>
@@ -149,10 +130,9 @@
 								<img src="@ViewBag.ImageURL" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;">
 							</li>
 						</ul>
-                        <!-- End of additional navigation for admin -->
+                        
                     </ul>
-					<!--/search-right-->
-					<!--/search-right-->
+
 					
 
 				</div>
@@ -232,33 +212,7 @@
 				</div>
 			</div>
 			</div>
-			<div class="below-section">
-				<div class="container">
-					<div class="copyright-footer">
-						<div class="columns text-lg-left">
-							<p>
-								&copy; 2020 ProShowz. All rights reserved | Designed by <a href="https://w3layouts.com">W3layouts</a>
-							</p>
-						</div>
 
-						<ul class="social text-lg-right">
-							<li>
-								<a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-							</li>
-							<li>
-								<a href="#linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-							</li>
-							<li>
-								<a href="#twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-							</li>
-							<li>
-								<a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
-							</li>
-
-						</ul>
-					</div>
-				</div>
-			</div>
 			<!-- copyright -->
 			<!-- move top -->
 			<button onclick="topFunction()" id="movetop" title="Go to top">
